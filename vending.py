@@ -1,4 +1,4 @@
- from collections import Counter
+from collections import Counter
 from dataclasses import dataclass
 from decimal import Decimal
 import typing
@@ -6,7 +6,7 @@ import typing
 ProductName = typing.NewType('ProductName', str)
 SlotCode = typing.NewType('SlotCode', str)
 Assortment = typing.Dict[ProductName, 'Product']
-Coins = typing.Counter[Decimal, int ]
+Coins = typing.Counter[Decimal]
 Menu = typing.Dict[ProductName, typing.Tuple[SlotCode, Decimal]]
 
 
@@ -23,6 +23,8 @@ class Product:
 
 class Machine:
     def __init__(self, slots: int, slot_depth: int) -> None:
+        self.slots = slots
+        self.slot_depth = slot_depth
         pass
 
     def load_products(self, assortment: Assortment) -> None:
@@ -42,3 +44,15 @@ class Machine:
 
     def cash_out(self) -> Coins:
         pass
+
+if __name__ == '__main__':
+    machine = Machine(slots=6, slot_depth=10)
+    products = {
+        ProductName("coca-cola"): Product(name=ProductName("coca-cola"), quantity=7, price=Decimal('2.1')),
+        ProductName("mars"): Product(name=ProductName("mars"), quantity=5, price=Decimal('1.9')),
+        ProductName("orbit"): Product(name=ProductName("orbit"), quantity=6, price=Decimal('2.3')),
+    }
+
+    machine.slots=9
+    print(machine.slots)
+    print(products['mars'].price)

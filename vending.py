@@ -8,6 +8,7 @@ SlotCode = typing.NewType('SlotCode', str)
 Assortment = typing.Dict[ProductName, 'Product']
 Coins = typing.Counter[Decimal]
 Menu = typing.Dict[ProductName, typing.Tuple[SlotCode, Decimal]]
+Prod2Slot = typing.Dict[ProductName, typing.Tuple['slots', 'slot_depth']]
 
 
 class MachineOverloadedException(Exception):
@@ -45,6 +46,7 @@ class Machine:
     def cash_out(self) -> Coins:
         pass
 
+
 if __name__ == '__main__':
     machine = Machine(slots=6, slot_depth=10)
     products = {
@@ -53,6 +55,18 @@ if __name__ == '__main__':
         ProductName("orbit"): Product(name=ProductName("orbit"), quantity=6, price=Decimal('2.3')),
     }
 
-    machine.slots=9
-    print(machine.slots)
-    print(products['mars'].price)
+    # print(machine.slots, machine.slot_depth)
+
+    prodlist = list(products.keys())
+    valulist = list(products.values())
+    # cena = products.p
+    # Prod2Slot = {productName : (machine.slots, machine.slot_depth)}
+    # x, y = (valulist[0])
+    # print(z)
+    print(products)
+    print(prodlist)
+    # valulist[2].quantity=2
+    print(valulist[2].price) #cena konkretnego produktu
+    print('----------------')
+    print(products.values())
+
